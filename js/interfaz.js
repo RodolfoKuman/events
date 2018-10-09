@@ -23,7 +23,33 @@ class Interfaz{
 
             })
     }
-
+    mostrarEventos(eventos){
+        this.limpiarResultados();
+       const listaEventos = eventos.events;
+       console.log(eventos.events);
+       listaEventos.forEach(evento => {
+           this.listado.innerHTML += `
+                <div class= "col-md-4 mb-4">
+                    <div class="card"> 
+                        <img class="img-fluid mb-2" src="${evento.logo !== null ? evento.logo.url : '' }" >
+                        <div class="card-body">
+                            <div class="text">
+                                <h2 class="text-center">${evento.name.text}</h2>
+                                <p class="lead text-info">Información del evento</p>
+                                <p>${evento.description.text.substring(0,200)}...</p>
+                                <span class="badge badge-primary">Capacidad: ${evento.capacity}</span>
+                                <span class="badge badge-secondary">Fecha y hora: ${evento.start.local}</span>
+                                <a href="${evento.url}" target="_blank" class="btn btn-primary btn-block mt-4">Comprar boletos</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           `;
+       })
+    }
+    limpiarResultados(){
+        this.listado.innerHTML = '';
+    }
     mostrarMensaje(mensaje,clases){
         const div = document.createElement('div');
         div.classList = clases;

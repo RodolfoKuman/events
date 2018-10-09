@@ -17,7 +17,11 @@ document.getElementById('buscarBtn').addEventListener('click',(e) => {
     if(textoBuscador !== ''){
         eventBrite.obtenerEventos(textoBuscador, categoriasSeleccionada)
             .then(eventos => {
-                console.log(eventos);
+               if(eventos.eventos.events.length > 0){
+                  ui.mostrarEventos(eventos.eventos);
+               }else{
+                   ui.mostrarMensaje('No hay resultados', 'alert alert-danger mt-4');
+               }
             })
     }else{
         ui.mostrarMensaje('Escribe algo en el buscador','alert alert-danger mt-4');
